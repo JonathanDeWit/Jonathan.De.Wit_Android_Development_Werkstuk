@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Jonathan.De.Wit_Android_Development_Werkstuk</string>
+    <string name="discover">Discover</string>
+    <string name="map">Map</string>
+    <string name="favorites">Favorites</string>
 </resources>
