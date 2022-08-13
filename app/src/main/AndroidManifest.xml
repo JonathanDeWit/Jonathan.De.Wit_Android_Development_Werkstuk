@@ -14,7 +14,7 @@
         android:theme="@style/Theme.JonathanDeWit_Android_Development_Werkstuk"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".Activitys.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -6,17 +6,17 @@
     app:startDestination="@id/mapFragment">
     <fragment
         android:id="@+id/discoverFragment"
-        android:name="be.ehb.visit_app.DiscoverFragment"
+        android:name="be.ehb.visit_app.Fragments.DiscoverFragment"
         android:label="fragment_discover"
         tools:layout="@layout/fragment_discover" />
     <fragment
         android:id="@+id/favoritFragment"
-        android:name="be.ehb.visit_app.FavoritFragment"
+        android:name="be.ehb.visit_app.Fragments.FavoritFragment"
         android:label="fragment_favorit"
         tools:layout="@layout/fragment_favorit" />
     <fragment
         android:id="@+id/mapFragment"
-        android:name="be.ehb.visit_app.MapFragment"
+        android:name="be.ehb.visit_app.Fragments.MapFragment"
         android:label="fragment_map"
         tools:layout="@layout/fragment_map" />
 </navigation>
