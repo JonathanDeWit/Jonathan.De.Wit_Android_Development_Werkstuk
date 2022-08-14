@@ -8,5 +8,10 @@
     <string name="enterCityHint">Enter a city name</string>
     <string name="no_result">No result found for</string>
     <string name="result">Results for:</string>
+    <string name="country">Country:</string>
+    <string name="city">City:</string>
+    <string name="street">Street:</string>
+    <string name="no_description">No description available</string>
+    <string name="no_street">No street available</string>
 
 </resources>

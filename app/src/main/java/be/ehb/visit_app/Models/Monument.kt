@@ -20,6 +20,7 @@ class Monument (
 }
 class MonumentAddress(
     var city:String,
+    var road:String?,
     var country:String,
     var postcode:String,
     var house_number:String,

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="be.ehb.visit_app">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -15,6 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JonathanDeWit_Android_Development_Werkstuk"
         tools:targetApi="31">
+        <activity
+            android:name=".Activitys.MonumentActivity"
+            android:exported="false"
+            android:parentActivityName=".Activitys.MainActivity"/>
         <activity
             android:name=".Activitys.MainActivity"
             android:exported="true">
