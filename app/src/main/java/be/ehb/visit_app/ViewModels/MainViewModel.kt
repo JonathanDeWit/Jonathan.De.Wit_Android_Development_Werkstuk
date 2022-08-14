@@ -12,8 +12,8 @@ import com.android.volley.toolbox.Volley
 class MainViewModel(): ViewModel() {
     private var queue: RequestQueue? = null
     lateinit var city: City
-    lateinit var Monuments: List<Monument>
-    val ApiKey = "5ae2e3f221c38a28845f05b67c36c020dab83b47cc2a45805f9e033e"
+    lateinit var monuments: List<Monument>
+    val apiKey = "5ae2e3f221c38a28845f05b67c36c020dab83b47cc2a45805f9e033e"
 
 
     private fun initQueue(context: FragmentActivity){

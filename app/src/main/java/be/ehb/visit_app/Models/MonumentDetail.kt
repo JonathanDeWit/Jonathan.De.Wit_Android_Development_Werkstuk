@@ -1,5 +1,6 @@
 package be.ehb.visit_app.Models
 
+import android.graphics.Bitmap
 import com.google.gson.annotations.SerializedName
 
 class MonumentDetail (
@@ -12,7 +13,7 @@ class MonumentDetail (
     var rate:String,
     var kinds:String,
 
-    var image:String,
+    var picture: Bitmap,
 
     var preview:Preview,
     @SerializedName("wikipedia_extracts")
