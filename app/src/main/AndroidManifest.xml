@@ -29,12 +29,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="YOUR_API_KEY" />
-
-        <activity
-            android:name=".MapTest"
-            android:exported="false"
-            android:label="@string/title_activity_map_test" />
+            android:value="AIzaSyBwn8NbW3G5VcSWvjmRqBs99ogsDOGO9JI" />
         <activity
             android:name=".Activitys.MonumentActivity"
             android:exported="false"

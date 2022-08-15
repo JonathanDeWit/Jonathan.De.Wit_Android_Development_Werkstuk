@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "be.ehb.visit_app"
-        minSdk 16
+        minSdk 21
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -39,10 +39,15 @@ android {
 
 dependencies {
 
+    //Google Maps
+    implementation "com.google.android.gms:play-services-maps:18.1.0"
+    implementation 'com.google.maps.android:android-maps-utils:2.3.0'
+    implementation 'com.google.maps.android:maps-utils-ktx:3.4.0'
+
     //Coroutines
-    implementation"androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
-    implementation"androidx.lifecycle:lifecycle-runtime-ktx:2.4.0"
-    implementation"androidx.lifecycle:lifecycle-livedata-ktx:2.4.0"
+    implementation"androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+    implementation"androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
+    implementation"androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
 
     //Import navigation
     // Kotlin

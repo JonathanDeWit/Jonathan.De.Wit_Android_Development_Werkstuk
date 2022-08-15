@@ -10,6 +10,8 @@ import android.widget.TextView
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
+import be.ehb.visit_app.Models.ApiCall
+import be.ehb.visit_app.Models.ApiCall.Companion.getMonumentImage
 import be.ehb.visit_app.Models.City
 import be.ehb.visit_app.Models.Monument
 import be.ehb.visit_app.Models.MonumentDetail
@@ -30,8 +32,8 @@ import kotlin.coroutines.suspendCoroutine
 
 class MonumentActivity : AppCompatActivity() {
 
-    val apiKey = "5ae2e3f221c38a28845f05b67c36c020dab83b47cc2a45805f9e033e"
-    private val requestTag = "DiscoverRequest"
+
+    private val requestTag = "DetailMonumentRequest"
     private lateinit var queue: RequestQueue
 
     private lateinit var mNameTextView:TextView
@@ -64,16 +66,14 @@ class MonumentActivity : AppCompatActivity() {
                 queue = Volley.newRequestQueue(this)
                 lifecycle.coroutineScope.launch() {
                     withContext(Dispatchers.IO){
-                        monument = getMonument(monumentApiId)
-                        monument.picture = getMonumentImage()
+                        monument = ApiCall.getMonument(monumentApiId, requestTag, queue)
+                        monument.picture = getMonumentImage(monument.preview.source, requestTag, queue)
                     }
                     withContext(Dispatchers.Main){
                         updateTextView()
                         mImageView.setImageBitmap(monument.picture)
                     }
                 }
-
-
             }
         }
 
@@ -92,49 +92,6 @@ class MonumentActivity : AppCompatActivity() {
                 mDescriptionTextView.text = monument.WikiInfo.text ?: getString(R.string.no_description)
             }
         }
-    }
-
-    suspend fun getMonument(monumentApiId:String) = suspendCoroutine<MonumentDetail>{ apiMonument ->
-
-            var getDetailMonumentUrl = "https://api.opentripmap.com/0.1/en/places/xid/${monumentApiId}?apikey=${apiKey}"
-
-            val gson = Gson()
-            //Create Get Request for the monument detail
-            //API request inspired by Volley documentation (https://google.github.io/volley/requestqueue.html)
-            val stringCityRequest = StringRequest(
-                Request.Method.GET, getDetailMonumentUrl, { response ->
-                    //Transform Json string to DetailMonument Kotlin object
-                    //Save DetailMonument object in main view model
-                    //Conversion inspired Coding in Flow tutorial (https://www.youtube.com/watch?v=xbo1G02c2VM&t=247s)
-                    var monumentObject = gson.fromJson(response.toString(), MonumentDetail::class.java)
-                    apiMonument.resume(monumentObject)
-                }, Response.ErrorListener { error ->
-                    //Log Error
-                    Log.e("API_Request_City", error.toString())
-                }
-            )
-            stringCityRequest.tag = requestTag
-            queue.add(stringCityRequest)
-
-
-    }
-
-    suspend fun getMonumentImage() = suspendCoroutine<Bitmap>{ apiImage ->
-        var getDetailMonumentUrl = monument.preview.source
-
-        val gson = Gson()
-        //Create Get Request for the monument detail
-        //API request inspired by heyletscode tutorial (https://www.youtube.com/watch?v=fASThCXLrCc)
-        val stringCityRequest = ImageRequest(getDetailMonumentUrl, { response ->
-            monument.picture = response
-            apiImage.resume(response)
-            }, 0, 0, ImageView.ScaleType.CENTER_CROP, null, { error ->
-                //Log Error
-                Log.e("API_Request_City", error.toString())
-            }
-        )
-        stringCityRequest.tag = requestTag
-        queue.add(stringCityRequest)
     }
 
     override fun onDestroy() {

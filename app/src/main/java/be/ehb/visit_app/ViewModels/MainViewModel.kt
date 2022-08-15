@@ -1,6 +1,7 @@
 package be.ehb.visit_app.ViewModels
 
 
+import android.app.Activity
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
 import be.ehb.visit_app.Models.City
@@ -13,24 +14,31 @@ class MainViewModel(): ViewModel() {
     private var queue: RequestQueue? = null
     lateinit var city: City
     lateinit var monuments: List<Monument>
-    val apiKey = "5ae2e3f221c38a28845f05b67c36c020dab83b47cc2a45805f9e033e"
-
+    var defaultCityName = "Brussel"
 
     private fun initQueue(context: FragmentActivity){
         queue = Volley.newRequestQueue(context)
     }
 
-    fun getQueue(context: FragmentActivity?): RequestQueue? {
+    fun getQueue(context: FragmentActivity?): RequestQueue {
+
         if (queue == null && context != null){
             initQueue(context)
         }
-        return queue
+        return queue!!
     }
+
     lateinit var getall:String
 
-    fun test(){
-        if (this::getall.isInitialized){
+    fun isCityInitialized():Boolean{
+        return this::city.isInitialized
+    }
+    fun isMonumentInitialized():Boolean{
+        return this::monuments.isInitialized
+    }
 
-        }
+    override fun onCleared() {
+        super.onCleared()
+        queue?.stop()
     }
 }
