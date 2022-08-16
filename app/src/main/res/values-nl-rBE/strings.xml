@@ -15,4 +15,5 @@
     <string name="no_description">Geen beschrijving beschikbaar</string>
     <string name="no_street">Geen straat naam beschikbaar</string>
     <string name="image_of_the_monument">Foto van het monument</string>
+    <string name="favorite">Favoriet</string>
 </resources>
