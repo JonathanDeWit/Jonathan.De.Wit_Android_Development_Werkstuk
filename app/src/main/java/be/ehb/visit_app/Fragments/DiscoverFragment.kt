@@ -32,8 +32,9 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover){
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val mainModel:MainViewModel by activityViewModels()
         super.onViewCreated(view, savedInstanceState)
+
+        val mainModel:MainViewModel by activityViewModels()
         queue = mainModel.getQueue(activity)
 
         cityTextView = view.findViewById<TextView>(R.id.cityTextView)

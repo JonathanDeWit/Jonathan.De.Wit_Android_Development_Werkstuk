@@ -1,35 +1,49 @@
 package be.ehb.visit_app.Models
 
 import android.graphics.Bitmap
+import androidx.room.*
 import com.google.gson.annotations.SerializedName
 
-class MonumentDetail (
+data class MonumentDetail(
     @SerializedName("xid")
-    val apiId:String,
+    var apiId:String ,
+
     var name:String,
 
-    var address:MonumentAddress,
+    var address:MonumentAddress = MonumentAddress(),
 
     var rate:String,
     var kinds:String,
-
     var picture: Bitmap,
 
     var preview:Preview,
     @SerializedName("wikipedia_extracts")
     var WikiInfo:WikipediaInfo,
 
+
     @SerializedName("point")
-    var coordinate:MonumentCoordinate
+    var coordinate:MonumentCoordinate = MonumentCoordinate()){
 
-)
 
-class Preview (
+
+}
+
+
+data class Preview (
     var source:String,
     var height:String,
     var width:String,
-)
-class WikipediaInfo(
+){
+    constructor():this("", "", ""){
+
+    }
+}
+
+data class WikipediaInfo(
     var title:String,
     var text:String?,
-)
+){
+    constructor():this("", ""){
+
+    }
+}

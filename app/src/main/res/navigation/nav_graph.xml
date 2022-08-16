@@ -19,4 +19,9 @@
         android:name="be.ehb.visit_app.Fragments.MapFragment"
         android:label="fragment_map"
         tools:layout="@layout/fragment_map" />
+    <activity
+        android:id="@+id/monumentActivity"
+        android:name="be.ehb.visit_app.Activitys.MonumentActivity"
+        android:label="activity_monument"
+        tools:layout="@layout/activity_monument" />
 </navigation>

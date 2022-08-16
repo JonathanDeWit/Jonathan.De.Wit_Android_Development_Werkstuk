@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Jonathan.De.Wit_Android_Development_Werkstuk</string>
+    <string name="discover">Ontdekken</string>
+    <string name="map">Kaart</string>
+    <string name="favorites">Favorieten</string>
+    <string name="more_info">Meer Info</string>
+    <string name="category">Categorie</string>
+    <string name="enterCityHint">Voer een plaatsnaam in</string>
+    <string name="no_result">Geen resultaat gevonden voor</string>
+    <string name="result">Resultaten voor</string>
+    <string name="country">Land:</string>
+    <string name="city">Stad:</string>
+    <string name="street">Straat:</string>
+    <string name="no_description">Geen beschrijving beschikbaar</string>
+    <string name="no_street">Geen straat naam beschikbaar</string>
+</resources>

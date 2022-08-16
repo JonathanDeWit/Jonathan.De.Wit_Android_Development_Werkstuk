@@ -7,6 +7,8 @@ import be.ehb.visit_app.R
 
 class FavoritFragment : Fragment(R.layout.fragment_favorit) {
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

@@ -10,13 +10,13 @@ class MonumentItem(monument: Monument, snippet: String):ClusterItem {
     private val position: LatLng
 
     fun getMonument(): LatLng {
-        return LatLng(monument.coordinate.lat, monument.coordinate.lon)
+        return LatLng(monument.coordinate.latitude, monument.coordinate.longitude)
     }
 
     init {
         this.snippet = snippet
         this.monument = monument
-        this.position = LatLng(monument.coordinate.lat, monument.coordinate.lat)
+        this.position = LatLng(monument.coordinate.latitude, monument.coordinate.latitude)
     }
     override fun getPosition(): LatLng {
         return position

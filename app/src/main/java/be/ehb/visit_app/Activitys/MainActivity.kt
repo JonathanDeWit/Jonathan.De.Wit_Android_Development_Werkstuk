@@ -3,6 +3,7 @@ package be.ehb.visit_app.Activitys
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -10,24 +11,39 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
-import be.ehb.visit_app.Models.ApiCall
 import be.ehb.visit_app.R
 import be.ehb.visit_app.ViewModels.MainViewModel
-import com.android.volley.RequestQueue
+import be.ehb.visit_app.VisitApplication
+import be.ehb.visit_app.room.MonumentModelFactory
+import be.ehb.visit_app.room.RoomViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private val requestTag = "MainRequest"
+    private val model: MainViewModel by viewModels()
+//    private val roomViewModel: RoomViewModel by viewModels {
+//        MonumentModelFactory((application as VisitApplication).repository)
+//    }
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        //model.repository = (application as VisitApplication).repository
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val model: MainViewModel by viewModels()
+
+
+        //var monuments = roomViewModel.allWords
+
+
+
+
 
         //Init navigation host fragment
         val navHostFragment =
