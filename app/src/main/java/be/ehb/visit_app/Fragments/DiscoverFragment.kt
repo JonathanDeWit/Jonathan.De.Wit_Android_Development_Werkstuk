@@ -1,5 +1,6 @@
 package be.ehb.visit_app.Fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.SearchView
@@ -10,10 +11,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import be.ehb.visit_app.Models.ApiCall
+import be.ehb.visit_app.Models.FavoriteMonument
 import be.ehb.visit_app.Models.Monument
 import be.ehb.visit_app.R
 import be.ehb.visit_app.RecyclerView.MonumentRecyclerAdapter
 import be.ehb.visit_app.ViewModels.MainViewModel
+import be.ehb.visit_app.room.FavoriteMonumentDao
+import be.ehb.visit_app.room.VisitRoomDatabase
 import com.android.volley.RequestQueue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -31,11 +35,30 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover){
     private var queue: RequestQueue? = null
 
 
+    var favoritMonuments = emptyList<FavoriteMonument>()
+    lateinit var favoriteMonumentDAO: FavoriteMonumentDao
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        var db = VisitRoomDatabase.getDatabase(context)
+        favoriteMonumentDAO = db.MonumentDao()
+
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val mainModel:MainViewModel by activityViewModels()
         queue = mainModel.getQueue(activity)
+
+
+        lifecycleScope.launch{
+            withContext(Dispatchers.IO){
+                favoritMonuments = favoriteMonumentDAO.getAllMonument()
+            }
+        }
+
 
         cityTextView = view.findViewById<TextView>(R.id.cityTextView)
         monumentRecyclerView = view.findViewById<RecyclerView>(R.id.monumentRecyclerView)
@@ -110,7 +133,7 @@ class DiscoverFragment : Fragment(R.layout.fragment_discover){
     }
 
     fun updateRecyclerAdapter(monumentRecyclerView:RecyclerView, monuments:List<Monument>){
-        adapter = MonumentRecyclerAdapter(monuments)
+        adapter = MonumentRecyclerAdapter(monuments, favoriteMonumentDAO, favoritMonuments)
         monumentRecyclerView.adapter = adapter
     }
 

@@ -14,5 +14,6 @@
     <string name="no_description">No description available</string>
     <string name="no_street">No street available</string>
     <string name="image_of_the_monument">Image of the monument</string>
+    <string name="like">Like</string>
 
 </resources>

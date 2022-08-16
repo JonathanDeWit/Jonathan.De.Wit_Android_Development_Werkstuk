@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "Favorite_Monument_Table")
-data class RoomMonument (
+class FavoriteMonument (
     @PrimaryKey
     var apiId:String = "",
     var name:String = "",
@@ -18,7 +18,7 @@ data class RoomMonument (
     var kinds:String = "",
 
     @Ignore
-    var picture: Bitmap = Bitmap.createBitmap(0,0, Bitmap.Config.ARGB_8888),
+    var picture: Bitmap = Bitmap.createBitmap(1,1, Bitmap.Config.ARGB_8888),
 
     var city:String= "",
     var road:String?= "",
@@ -30,4 +30,18 @@ data class RoomMonument (
     var description:String?= "",
 
     ){
+
+    fun toMonumentDetail(): MonumentDetail {
+        var monumentDetail = MonumentDetail(
+            apiId, name, MonumentAddress(city, road, country, "", house_number), rate,
+            kinds, picture, Preview(source, "", "",), WikipediaInfo("", description),
+            MonumentCoordinate(longitude, latitude))
+        return monumentDetail
+    }
+    fun toMonument(): Monument {
+        var monument = Monument(
+            apiId, name, kinds, rate,
+            MonumentCoordinate(longitude, latitude))
+        return monument
+    }
 }

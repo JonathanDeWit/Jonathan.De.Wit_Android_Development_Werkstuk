@@ -16,6 +16,7 @@ import be.ehb.visit_app.ViewModels.MainViewModel
 import be.ehb.visit_app.VisitApplication
 import be.ehb.visit_app.room.MonumentModelFactory
 import be.ehb.visit_app.room.RoomViewModel
+import be.ehb.visit_app.room.VisitRoomDatabase
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -24,22 +25,21 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private val requestTag = "MainRequest"
     private val model: MainViewModel by viewModels()
-//    private val roomViewModel: RoomViewModel by viewModels {
-//        MonumentModelFactory((application as VisitApplication).repository)
-//    }
+    private val roomViewModel: RoomViewModel by viewModels {
+        MonumentModelFactory((application as VisitApplication).repository)
+    }
 
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        //model.repository = (application as VisitApplication).repository
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
 
+        //roomViewModel.allWords
 
-        //var monuments = roomViewModel.allWords
+
 
 
 

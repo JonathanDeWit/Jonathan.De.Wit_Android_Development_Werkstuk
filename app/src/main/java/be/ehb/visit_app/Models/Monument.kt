@@ -1,5 +1,6 @@
 package be.ehb.visit_app.Models
 
+import android.graphics.Bitmap
 import com.google.android.gms.maps.model.LatLng
 import com.google.gson.annotations.SerializedName
 import com.google.maps.android.clustering.ClusterItem
@@ -13,14 +14,9 @@ class Monument (
     var name:String,
     var kinds:String,
     var rate:String,
-    var image:String,
-    var address:MonumentAddress,
-    var preview:MonumentPreview,
     @SerializedName("point")
     var coordinate:MonumentCoordinate
 ): ClusterItem{
-
-
 
     override fun getPosition(): LatLng {
         return LatLng(coordinate.latitude, coordinate.longitude)
@@ -34,6 +30,12 @@ class Monument (
         return ""
     }
 
+    fun toFavoriteMonument(): FavoriteMonument {
+        var favoriteMonument = FavoriteMonument(apiId, name, rate, kinds, Bitmap.createBitmap(1,1, Bitmap.Config.ARGB_8888)
+        , "", "", "", "", "", coordinate.longitude, coordinate.latitude, "")
+
+        return favoriteMonument
+    }
 
 }
 

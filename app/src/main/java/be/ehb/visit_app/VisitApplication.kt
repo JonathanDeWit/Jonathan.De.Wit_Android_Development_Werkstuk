@@ -10,7 +10,7 @@ class VisitApplication: Application() {
 
     val applicationScope = CoroutineScope(SupervisorJob())
 
-    val database by lazy { VisitRoomDatabase.getDatabase(this, applicationScope) }
+    val database by lazy { VisitRoomDatabase.getDatabase(this) }
     val repository by lazy { VisitRepository(database.MonumentDao()) }
 
 }

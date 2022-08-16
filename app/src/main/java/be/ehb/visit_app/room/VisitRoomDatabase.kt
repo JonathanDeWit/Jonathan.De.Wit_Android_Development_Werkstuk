@@ -2,22 +2,20 @@ package be.ehb.visit_app.room
 
 import android.content.Context
 import androidx.room.*
-import be.ehb.visit_app.Models.MonumentDetail
-import be.ehb.visit_app.Models.RoomMonument
+import be.ehb.visit_app.Models.FavoriteMonument
 import kotlinx.coroutines.CoroutineScope
 
-@Database(entities = arrayOf(RoomMonument::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(FavoriteMonument::class), version = 1, exportSchema = false)
 abstract class VisitRoomDatabase : RoomDatabase() {
 
-    abstract fun MonumentDao(): MonumentDetailDao
+    abstract fun MonumentDao(): FavoriteMonumentDao
 
     companion object {
         @Volatile
         private var INSTANCE: VisitRoomDatabase? = null
 
         fun getDatabase(
-            context: Context,
-            scope: CoroutineScope
+            context: Context
         ): VisitRoomDatabase {
             // if the INSTANCE is not null, then return it,
             // if it is, then create the database
@@ -25,10 +23,9 @@ abstract class VisitRoomDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     VisitRoomDatabase::class.java,
-                    "word_database"
+                    "visit_database"
                 )
-                    // Wipes and rebuilds instead of migrating if no Migration object.
-                    // Migration is not part of this codelab.
+                    .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance
                 // return instance

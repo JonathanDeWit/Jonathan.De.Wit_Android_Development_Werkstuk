@@ -2,15 +2,15 @@ package be.ehb.visit_app.room
 
 import androidx.lifecycle.*
 import be.ehb.visit_app.Models.MonumentDetail
-import be.ehb.visit_app.Models.RoomMonument
+import be.ehb.visit_app.Models.FavoriteMonument
 import kotlinx.coroutines.launch
 
 class RoomViewModel(private val repository: VisitRepository): ViewModel() {
-    val allWords: LiveData<List<RoomMonument>> = repository.allMonument.asLiveData()
+    val allWords: List<FavoriteMonument> = repository.allMonument
 
 
-    fun insert(word: RoomMonument) = viewModelScope.launch {
-        //repository.insert(word)
+    fun insert(word: FavoriteMonument) = viewModelScope.launch {
+        repository.insert(word)
     }
 }
 
