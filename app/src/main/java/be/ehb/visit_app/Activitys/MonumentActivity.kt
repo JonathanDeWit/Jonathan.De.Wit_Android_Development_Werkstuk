@@ -86,7 +86,7 @@ class MonumentActivity : AppCompatActivity() {
             mCityTextView.text = getString(R.string.city).plus(" ${monument.address.city}")
             if (monument.address != null){
                 mStreetTextView.text = getString(R.string.street)
-                    .plus(" ${monument.address.road ?: getString(R.string.no_street)}")
+                    .plus(" ${monument.address.road ?: getString(R.string.no_street)} ${monument.address.house_number.toString() ?: ""}")
             }
             if (monument.WikiInfo!= null){
                 mDescriptionTextView.text = monument.WikiInfo.text ?: getString(R.string.no_description)
